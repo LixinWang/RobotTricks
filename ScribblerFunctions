@@ -1,0 +1,100 @@
+# Lixin Wang
+# Lwang401@gatech.edu
+# I worked on the homework assignment alone,
+# using only this semester's course materials.
+
+from Myro import *
+import time
+init()
+
+def trick1(): # rocks back and forth 3 times
+    for i in range(3):
+        forward(1, 0.5)
+        backward(1, 0.5)
+
+def trick2(): #chases its "tail" and beeps "ding-dong"
+    for i in timer(5):
+        rotate(1)
+        beep(0.5, 659.25)
+        beep(0.5, 523.25)
+        stop()
+
+def trick3(): # turns left and right, plays an arpeggio, repeats for 5 secs
+    for i in range(3):
+        turnLeft(1, 0.25)
+        turnRight(1, 0.25)
+        beep(0.25, 523.25)
+        beep(0.25, 659.25)
+        beep(0.25, 783.99)
+        beep(0.25, 1046.50)
+
+def trick4(): # backs up slowly and dies. #ded.
+        motors(0, -1, .5)
+        motors(-1, 0, .5)
+        motors(0, -2/3, .5)
+        motors(-2/3, 0, .5)
+        motors(0, -1/2, .5)
+        motors(-1/2, 0, .5)
+        beep(0.5, 622.25)
+        beep(0.5, 587.33)
+        beep(0.5, 554.37)
+        beep(0.7, 523.25)
+
+def tune(): # plays the coca cola jingle :D
+    beep(0.50, 659.25)
+    beep(0.50, 523.25)
+    beep(0.56, 587.33)
+    beep(0.36, 659.25)
+    beep(0.50, 523.25)
+
+
+def morningRoutine(numTricks):
+    if numTricks < 1:
+        print("Silly robot, tricks are for kids! ;D")
+    elif numTricks== 1:
+        trick1()
+    elif numTricks== 2:
+        trick1()
+        trick2()
+    elif numTricks== 3:
+        trick1()
+        trick2()
+        trick3()
+    elif numTricks== 4:
+        trick1()
+        trick2()
+        trick3()
+        trick4()
+    else:
+        trick1()
+        trick2()
+        trick3()
+        trick4()
+        wait(0.1)
+        tune()
+
+
+def greetMenu():
+    menu ="""1. Tiny Treats
+2. OK Treats
+3. Jumbo Treats
+0. Exit"""
+    while True:
+        treat = input("""1. Tiny Treats
+2. OK Treats
+3. Jumbo Treats
+0. Exit
+Which option would you like? Please enter number""")
+        if treat== "1":
+            trick4()
+        elif treat== "2":
+            trick2()
+        elif treat== "3":
+            trick1()
+            trick3()
+        elif treat== "0":
+            print("Bye, bye! Have a good day!")
+            return None
+        else:
+            print("I'm sorry, I cannot accept that.")
+            print(menu)
